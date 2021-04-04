@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 def find_corners_chessbooard(img,nx,ny,plot=1):
     ''' Function to find and draw the corners of the chessboard
-    - img is the image in RGB
+    - img is the image in BGR
     - nx and ny are the number of square coners (not counting external) in the chessboard in x and y direction
     - plot is a switch to activate or deactivate the plotting of the result
     '''
@@ -38,18 +38,25 @@ def cal_undistort(img, objpoints, imgpoints):
     undist = cv2.undistort(img, mtx, dist, None, mtx)
     return undist
 
-def compare_images(original_image, modified_image, save=0, savefile=None, BGR=0):
+def compare_images(original_image, modified_image, save=0, savefile=None, orig_format='RGB', mod_format='RGB'):
     '''Function to compare to images together'''
     #Modify to RGB if necessary
-    if BGR:
+    if orig_format=='BGR':
         original_image = cv2.cvtColor(original_image, cv2.COLOR_BGR2RGB)
+    if mod_format=='BGR':
         modified_image = cv2.cvtColor(modified_image, cv2.COLOR_BGR2RGB)
     #Plot
     f, (ax1, ax2) = plt.subplots(1, 2, figsize=(24, 9))
     f.tight_layout()
-    ax1.imshow(original_image)
+    if orig_format=='GRAY':
+        ax1.imshow(original_image, cmap='gray')
+    else:
+        ax1.imshow(original_image)
     ax1.set_title('Original', fontsize=50)
-    ax2.imshow(modified_image)
+    if mod_format=='GRAY':
+        ax2.imshow(modified_image, cmap='gray')
+    else:
+        ax2.imshow(modified_image)
     ax2.set_title('Modified', fontsize=50)
     plt.subplots_adjust(left=0., right=1, top=0.9, bottom=0.)
     #Save

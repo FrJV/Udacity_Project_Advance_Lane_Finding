@@ -21,7 +21,7 @@ The goals / steps of this project are the following:
 
 [image1]: ./images_for_writeup/undistorted_chess_board.png "Camera calibration example"
 [image2]: ./images_for_writeup/distortion_correction_lanes.png "Road tranformation"
-[image3]: ./examples/binary_combo_example.jpg "Binary Example"
+[image3]: ./images_for_writeup/binary_image.png "Binary Example"
 [image4]: ./examples/warped_straight_lines.jpg "Warp Example"
 [image5]: ./examples/color_fit_lines.jpg "Fit Visual"
 [image6]: ./examples/example_output.jpg "Output"
@@ -64,8 +64,16 @@ As an example, see below image:
 ![alt text][image2]
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
+The functions used for this step are contained in the file called `binary_image_helper.py` (these functions are all based on those included in Lesson 7 from the Udacity course Self-driving car engineer). These functions are used in the 2.2 step of the main project notebook: `Project.ipynb`. 
 
-I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at lines # through # in `another_file.py`).  Here's an example of my output for this step.  (note: this is not actually from one of the test images)
+In order to produced the output binary image I used a combination of:
+- Color, channel S, threshold (150, 250)
+- Magnitud of the gradient in the red channel. Sobel kernel of 7 and threshold (50, 100)
+- Direction of the gradient. Sobel kernel of 9 and threshold (0.8, 1.2)
+
+To come up with these parameters and combination I tested different alternatives in the notebook `Tests_binary_image.ipynb`.
+
+Here's an example of my output for this step:
 
 ![alt text][image3]
 
