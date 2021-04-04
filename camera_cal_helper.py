@@ -13,7 +13,7 @@ def find_corners_chessbooard(img,nx,ny,plot=1):
     - plot is a switch to activate or deactivate the plotting of the result
     '''
     # Convert to grayscale
-    gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     # Find the chessboard corners
     ret, corners = cv2.findChessboardCorners(gray, (nx, ny), None)
     # If found, draw corners
@@ -38,15 +38,21 @@ def cal_undistort(img, objpoints, imgpoints):
     undist = cv2.undistort(img, mtx, dist, None, mtx)
     return undist
 
-def compare_images(original_image, modifed_image, save=0, savefile=None):
-    '''Function to compare to imaes together'''
+def compare_images(original_image, modified_image, save=0, savefile=None, BGR=0):
+    '''Function to compare to images together'''
+    #Modify to RGB if necessary
+    if BGR:
+        original_image = cv2.cvtColor(original_image, cv2.COLOR_BGR2RGB)
+        modified_image = cv2.cvtColor(modified_image, cv2.COLOR_BGR2RGB)
+    #Plot
     f, (ax1, ax2) = plt.subplots(1, 2, figsize=(24, 9))
     f.tight_layout()
     ax1.imshow(original_image)
     ax1.set_title('Original', fontsize=50)
-    ax2.imshow(modifed_image)
+    ax2.imshow(modified_image)
     ax2.set_title('Modified', fontsize=50)
     plt.subplots_adjust(left=0., right=1, top=0.9, bottom=0.)
+    #Save
     if save:
-        plt.savefig(savefile)    
+        plt.savefig(savefile)
     return None

@@ -19,8 +19,8 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./undistorted_chess_board.png "Camera calibration example"
-[image2]: ./test_images/test1.jpg "Road Transformed"
+[image1]: ./images_for_writeup/undistorted_chess_board.png "Camera calibration example"
+[image2]: ./images_for_writeup/distortion_correction_lanes.png "Road tranformation"
 [image3]: ./examples/binary_combo_example.jpg "Binary Example"
 [image4]: ./examples/warped_straight_lines.jpg "Warp Example"
 [image5]: ./examples/color_fit_lines.jpg "Fit Visual"
@@ -59,8 +59,8 @@ Additionally, a function `compare_images` was made to plot both images (original
 ### Pipeline (single images)
 
 #### 1. Provide an example of a distortion-corrected image.
-
-To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like this one:
+In this step the same functions used in the point above were applied to the images in the `test_images` folder. All the output images were saved in folder `output_images` using the same name as the input ones. 
+As an example, see below image:
 ![alt text][image2]
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
