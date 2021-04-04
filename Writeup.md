@@ -19,7 +19,7 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/undistort_output.png "Undistorted"
+[image1]: ./undistorted_chess_board.png "Camera calibration example"
 [image2]: ./test_images/test1.jpg "Road Transformed"
 [image3]: ./examples/binary_combo_example.jpg "Binary Example"
 [image4]: ./examples/warped_straight_lines.jpg "Warp Example"
@@ -42,12 +42,17 @@ You're reading it!
 ### Camera Calibration
 
 #### 1. Briefly state how you computed the camera matrix and distortion coefficients. Provide an example of a distortion corrected calibration image.
+All the functions that facilitate this step are contained in the file called `camera_cal_helper.py` (these functions are all based on those included in Lesson 6 from the Udacity course Self-driving car engineer). These functions are used in the first steps of the main project notebook: `Project.ipynb`. 
 
-The code for this step is contained in the first code cell of the IPython notebook located in "./examples/example.ipynb" (or in lines # through # of the file called `some_file.py`).  
+After importing the relevant libraries I prepare the object points (`obj`) and the image points(`corners`):
+- The object points ("real" coordinates of the chessboard corners) are similar for each chess board image. 
+- The image points (image coordinates of chessboard corners) are calculated for each image using the function find_corners_chessboard. 
+For each image the corners are successfully identified, `obj` and `corners` are appended to the lists of object points (`obj_points`) and image points(`img_points`).
 
-I start by preparing "object points", which will be the (x, y, z) coordinates of the chessboard corners in the world. Here I am assuming the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image.  Thus, `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time I successfully detect all chessboard corners in a test image.  `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection.  
+Finally, these sets of object and image points are used to compute the camera calibration and distortion coefficients and apply the distortion correction to an example image (in this case `calibration1` - see result below). Both these steps are performed in `cal_undistort` function.
 
-I then used the output `objpoints` and `imgpoints` to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function.  I applied this distortion correction to the test image using the `cv2.undistort()` function and obtained this result: 
+Additionally, a function `compare_images` was made to plot both images (original and undistorted) and save the result.
+
 
 ![alt text][image1]
 
