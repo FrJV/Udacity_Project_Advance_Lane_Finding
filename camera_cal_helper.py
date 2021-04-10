@@ -74,7 +74,7 @@ def pers_transform(image, x_off_low, x_off_high, Inv=0):
     xmid=image.shape[1]/2
     yhigh=image.shape[0]*0.65
     ylow=image.shape[0]
-    x_off=(x_off_high+x_off_low)/2
+    x_off=(x_off_high+x_off_low)//2
     #Source points
     source= np.float32([[xmid-x_off_low,ylow],[xmid+x_off_low,ylow],[xmid+x_off_high,yhigh],[xmid-x_off_high,yhigh]])
     #Destination points

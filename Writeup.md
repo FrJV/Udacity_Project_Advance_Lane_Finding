@@ -22,7 +22,8 @@ The goals / steps of this project are the following:
 [image1]: ./images_for_writeup/undistorted_chess_board.png "Camera calibration example"
 [image2]: ./images_for_writeup/distortion_correction_lanes.png "Road tranformation"
 [image3]: ./images_for_writeup/binary_image.png "Binary Example"
-[image4]: ./images_for_writeup/transformed_image.png "Perspective transform Example"
+[image4]: ./images_for_writeup/source_points.png "Source points Example"
+[image5]: ./images_for_writeup/transformed_image.png "Perspective transform Example"
 [image5]: ./examples/color_fit_lines.jpg "Fit Visual"
 [image6]: ./examples/example_output.jpg "Output"
 [video1]: ./project_video.mp4 "Video"
@@ -74,11 +75,13 @@ In order to produced the output binary image I used a combination of:
 To come up with these parameters and combination I tested different alternatives in the notebook `Tests_binary_image.ipynb`.
 
 Here's an example of my output for this step:
-
 ![alt text][image3]
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
-This step uses the function `pers_transform`, in the file called `camera_cal_helper.py`. This fuction assumes that the road is centered in the image and therefore needs just an offset (from te centerline) in the x direction to create the source and destination points. To find the points in the vertical direction it assumes the horizon is at 65% height in the image.
+This step uses the function `pers_transform`, in the file called `camera_cal_helper.py`. This fuction assumes that the road is centered in the image. Actually, this induces a small error, as it seems the camera is slightly closer to the left lane (see image below).
+![alt text][image4]
+
+Following the the assumption that camera is in the ceterline, the function needs just an offset in the x direction to create the source and destination points. To find the points in the vertical direction it assumes the horizon is at 65% height in the image.
 I used the ipython notebook `Perspective_Transform_tests.ipynb` to come up with the best parameters, ending up using `x_offlow=450` and `x_offhigh=75`. 
 
 This resulted in the following source and destination points:
@@ -91,7 +94,7 @@ This resulted in the following source and destination points:
 | 565, 468      | 378, 0        |
 
 Result is shown in this example image:
-![alt text][image4]
+![alt text][image5]
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
