@@ -22,7 +22,7 @@ The goals / steps of this project are the following:
 [image1]: ./images_for_writeup/undistorted_chess_board.png "Camera calibration example"
 [image2]: ./images_for_writeup/distortion_correction_lanes.png "Road tranformation"
 [image3]: ./images_for_writeup/binary_image.png "Binary Example"
-[image4]: ./examples/warped_straight_lines.jpg "Warp Example"
+[image4]: ./images_for_writeup/transformed_image.png "Perspective transform Example"
 [image5]: ./examples/color_fit_lines.jpg "Fit Visual"
 [image6]: ./examples/example_output.jpg "Output"
 [video1]: ./project_video.mp4 "Video"
@@ -78,33 +78,19 @@ Here's an example of my output for this step:
 ![alt text][image3]
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
-
-The code for my perspective transform includes a function called `warper()`, which appears in lines 1 through 8 in the file `example.py` (output_images/examples/example.py) (or, for example, in the 3rd code cell of the IPython notebook).  The `warper()` function takes as inputs an image (`img`), as well as source (`src`) and destination (`dst`) points.  I chose the hardcode the source and destination points in the following manner:
-
-```python
-src = np.float32(
-    [[(img_size[0] / 2) - 55, img_size[1] / 2 + 100],
-    [((img_size[0] / 6) - 10), img_size[1]],
-    [(img_size[0] * 5 / 6) + 60, img_size[1]],
-    [(img_size[0] / 2 + 55), img_size[1] / 2 + 100]])
-dst = np.float32(
-    [[(img_size[0] / 4), 0],
-    [(img_size[0] / 4), img_size[1]],
-    [(img_size[0] * 3 / 4), img_size[1]],
-    [(img_size[0] * 3 / 4), 0]])
-```
+This step uses the function `pers_transform`, in the file called `camera_cal_helper.py`. This fuction assumes that the road is centered in the image and therefore needs just an offset (from te centerline) in the x direction to create the source and destination points. To find the points in the vertical direction it assumes the horizon is at 65% height in the image.
+I used the ipython notebook `Perspective_Transform_tests.ipynb` to come up with the best parameters, ending up using `x_offlow=450` and `x_offhigh=75`. 
 
 This resulted in the following source and destination points:
 
 | Source        | Destination   | 
 |:-------------:|:-------------:| 
-| 585, 460      | 320, 0        | 
-| 203, 720      | 320, 720      |
-| 1127, 720     | 960, 720      |
-| 695, 460      | 960, 0        |
+| 190, 720      | 378, 720      | 
+| 1090, 720     | 903, 720      |
+| 715, 468      | 903, 0        |
+| 565, 468      | 378, 0        |
 
-I verified that my perspective transform was working as expected by drawing the `src` and `dst` points onto a test image and its warped counterpart to verify that the lines appear parallel in the warped image.
-
+Result is shown in this example image:
 ![alt text][image4]
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?

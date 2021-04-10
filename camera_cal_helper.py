@@ -1,5 +1,5 @@
 '''This file is developed for the Udacity Project Advance Lane Finding.
-It contains functions to help solving the camera calibration.
+It contains functions to help solving the camera calibration and perspective transform.
 All functions are based on those included in Lesson 6 from the Udacity course Self-driving car engineer.'''
 
 import numpy as np
@@ -63,3 +63,27 @@ def compare_images(original_image, modified_image, save=0, savefile=None, orig_f
     if save:
         plt.savefig(savefile)
     return None
+
+def pers_transform(image, x_off_low, x_off_high, Inv=0):
+    '''Function to perform persective transform on lane road images
+    It creates the source and destination ponts from x_off_low and x_off_high
+    Inv is a flag to make the inverse transform'''
+    # Define image size for warpPerspective function
+    img_size = (image.shape[1], image.shape[0])
+    #Parameters for source and destination points
+    xmid=image.shape[1]/2
+    yhigh=image.shape[0]*0.65
+    ylow=image.shape[0]
+    x_off=(x_off_high+x_off_low)/2
+    #Source points
+    source= np.float32([[xmid-x_off_low,ylow],[xmid+x_off_low,ylow],[xmid+x_off_high,yhigh],[xmid-x_off_high,yhigh]])
+    #Destination points
+    dest= np.float32([[xmid-x_off,ylow],[xmid+x_off,ylow],[xmid+x_off,0],[xmid-x_off,0]])
+    #Perspective matrix
+    if not Inv:
+        M = cv2.getPerspectiveTransform(source, dest)
+    else:
+        M = cv2.getPerspectiveTransform(dest, source)
+    #Perform perspective transform
+    transformed = cv2.warpPerspective(image, M, img_size, flags=cv2.INTER_LINEAR)
+    return transformed
