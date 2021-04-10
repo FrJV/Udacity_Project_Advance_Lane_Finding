@@ -24,8 +24,8 @@ The goals / steps of this project are the following:
 [image3]: ./images_for_writeup/binary_image.png "Binary Example"
 [image4]: ./images_for_writeup/source_points.png "Source points Example"
 [image5]: ./images_for_writeup/transformed_image.png "Perspective transform Example"
-[image5]: ./examples/color_fit_lines.jpg "Fit Visual"
-[image6]: ./examples/example_output.jpg "Output"
+[image6]: ./images_for_writeup/lanes_image.png "Lane identification Example"
+[image7]: ./images_for_writeup/result_image.png "Result Example"
 [video1]: ./project_video.mp4 "Video"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
@@ -97,20 +97,20 @@ Result is shown in this example image:
 ![alt text][image5]
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
+The functions that facilitate this step are contained in the file `lane_polynomial_helper.py`, functions `find_lane_pixels` and `fit_polynomial`  (these functions are all based on those included in Lesson 8 from the Udacity course Self-driving car engineer). 
+These functions are used in the step 2.4 of the main project notebook: `Project.ipynb`.
 
-Then I did some other stuff and fit my lane lines with a 2nd order polynomial kinda like this:
-
-![alt text][image5]
+As an example of lane identification see image below:
+![alt text][image6]
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
-
-I did this in lines # through # in my code in `my_other_file.py`
+This occurs in function `lane_car_parameters` in the file `lane_polynomial_helper.py`. Also, it's use in step 2.4 of the main project notebook: `Project.ipynb`.
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
+This last step is made with functions `lanes_image` and `add_lane_par` in the file `lane_polynomial_helper.py`. Also, they're used in step 2.4 of the main project notebook: `Project.ipynb`.
 
-I implemented this step in lines # through # in my code in `yet_another_file.py` in the function `map_lane()`.  Here is an example of my result on a test image:
-
-![alt text][image6]
+This is an example of teh final result after all the steps:
+![alt text][image7]
 
 ---
 
