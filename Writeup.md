@@ -99,6 +99,7 @@ Result is shown in this example image:
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 The functions that facilitate this step are contained in the file `lane_polynomial_helper.py`, functions `find_lane_pixels` and `fit_polynomial`  (these functions are all based on those included in Lesson 8 from the Udacity course Self-driving car engineer). 
 These functions are used in the step 2.4 of the main project notebook: `Project.ipynb`.
+In order to set the number of windows, window width and minimum pixels to recenter, the notebook `Test_finding_lanes.ipynb` was used. In general, the continous line is caught well, but the discontinuous is more challenging. 
 
 As an example of lane identification see image below:
 ![alt text][image6]
