@@ -58,8 +58,8 @@ def dir_sobel(img, sobel_kernel=3, thresh=(0, np.pi/2)):
 
 def HLS_threshold(img, channel='S', thresh=(0, 255)):
     '''This fuunction to create a binary output based on the S channel and a selected threshold
-    Img is and BGR image'''
-    img_HLS = cv2.cvtColor(img, cv2.COLOR_BGR2HLS)
+    Img is and RGB image'''
+    img_HLS = cv2.cvtColor(img, cv2.COLOR_RGB2HLS)
     # Get the required channel
     if channel=='H':
         channel=img_HLS[:,:,0]
