@@ -114,8 +114,8 @@ def add_lane_par(image, left_curverad, right_curverad, dist_center):
     else:
         side='left'
     #Prepare text
-    text1='Left radious of curvature: '+str(int(left_curverad))+' m'
-    text2='Right radious of curvature: '+str(int(right_curverad))+' m'
+    text1='Left radius of curvature: '+str(int(left_curverad))+' m'
+    text2='Right radius of curvature: '+str(int(right_curverad))+' m'
     text3='Car is '+str(np.around(np.abs(dist_center),2))+' m to the '+side+' of the center of the lane'
     #Include text in image
     cv2.putText(image, text1, (300,50), cv2.FONT_HERSHEY_PLAIN, 2, (255,255,255) )
