@@ -127,4 +127,6 @@ The biggest challenge I found was to identify the lines (especially the disconti
 
 A number of "safety checks" were introduced by checking the variation of the radius of curvature and the distance to the center (in the `class Line`), and also if they are paralell and curve in the same direction (in the function `pipeline`). Also, the function `alt_binary_image` was used in cases were line pixels were not found (if this still occured, the previous lines were retrieved and reused - see `pipeline` and `class Line`). Still, the result for the challenge video is not satisfactory.
 
-To be honest I'm sure what could I do to make it more robust. I played with further checks to filter the lines, but then they made them very stiff (once they found a good one, they stayed there for very long time).
+To be honest I'm not sure what could I do to make it more robust. I played with further checks to filter the lines, but then they made them very stiff (once they found a good one, they stayed there for very long time).
+
+You an find the output for teh three videos: `project_video_output.mp4`, `challenge_video_output.mp4` and `harder_challenge_video_output.mp4` in the same directory as this writeup. 
