@@ -148,7 +148,9 @@ class Line():
             #print('Skip line')
             if self.wrong > 4:
                 self.wrong = 0
-                self.fitlist = []
+                ##TEST
+                #self.fitlist = []
+                ##TEST
                 self.init_line(top_binary_image)
                 #print('Reinitialize line')
         return
@@ -187,7 +189,9 @@ class Line():
     def line_returned(self, top_binary_image):
         if len(self.fitlist) < 2 or self.wrong > 4:
             self.wrong = 0
-            self.fitlist = []
+            ##TEST
+            #self.fitlist = []
+            ##TEST
             self.init_line(top_binary_image)
         else:
             self.wrong += 1

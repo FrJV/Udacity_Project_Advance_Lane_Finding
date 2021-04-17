@@ -41,7 +41,7 @@ def mag_sobel(img, sobel_kernel=3, thresh=(0, 255)):
     return binary_output
 
 def dir_sobel(img, sobel_kernel=3, thresh=(0, np.pi/2)):
-    '''This fuunction to create a binary output based on the sobel gradient direction and a selected threshold
+    '''This function to create a binary output based on the sobel gradient direction and a selected threshold
     Img is the image in a single channel format (e.g. grey, or one of the components H,L or S)'''
     # Take the gradient in x and y separately
     sobelx = cv2.Sobel(img, cv2.CV_64F, 1, 0, ksize=sobel_kernel)
@@ -56,18 +56,10 @@ def dir_sobel(img, sobel_kernel=3, thresh=(0, np.pi/2)):
     binary_output[(direction >= thresh[0]) & (direction <= thresh[1])] = 1
     return binary_output
 
-def HLS_threshold(img, channel='S', thresh=(0, 255)):
-    '''This fuunction to create a binary output based on the S channel and a selected threshold
-    Img is and RGB image'''
-    img_HLS = cv2.cvtColor(img, cv2.COLOR_RGB2HLS)
-    # Get the required channel
-    if channel=='H':
-        channel=img_HLS[:,:,0]
-    elif channel=='L':
-        channel=img_HLS[:,:,1]
-    elif channel=='S':
-        channel=img_HLS[:,:,2]
+def binary_threshold(img, thresh=(0, 255)):
+    '''This function to create a binary output based on the selected threshold
+    Img is the image in a single channel format (e.g. grey, or one of the components H,L or S)'''
     # Create a mask of 1's where the scaled gradient magnitude
-    binary_output = np.zeros_like(channel)
-    binary_output[(channel >= thresh[0]) & (channel <= thresh[1])] = 1
+    binary_output = np.zeros_like(img)
+    binary_output[(img >= thresh[0]) & (img <= thresh[1])] = 1
     return binary_output

@@ -38,32 +38,6 @@ def cal_undistort(img, objpoints, imgpoints):
     undist = cv2.undistort(img, mtx, dist, None, mtx)
     return undist
 
-def compare_images(original_image, modified_image, save=0, savefile=None, orig_format='RGB', mod_format='RGB'):
-    '''Function to compare to images together'''
-    #Modify to RGB if necessary
-    if orig_format=='BGR':
-        original_image = cv2.cvtColor(original_image, cv2.COLOR_BGR2RGB)
-    if mod_format=='BGR':
-        modified_image = cv2.cvtColor(modified_image, cv2.COLOR_BGR2RGB)
-    #Plot
-    f, (ax1, ax2) = plt.subplots(1, 2, figsize=(24, 9))
-    f.tight_layout()
-    if orig_format=='GRAY':
-        ax1.imshow(original_image, cmap='gray')
-    else:
-        ax1.imshow(original_image)
-    ax1.set_title('Original', fontsize=50)
-    if mod_format=='GRAY':
-        ax2.imshow(modified_image, cmap='gray')
-    else:
-        ax2.imshow(modified_image)
-    ax2.set_title('Modified', fontsize=50)
-    plt.subplots_adjust(left=0., right=1, top=0.9, bottom=0.)
-    #Save
-    if save:
-        plt.savefig(savefile)
-    return None
-
 def pers_transform(image, x_off_low, x_off_high, Inv=0):
     '''Function to perform persective transform on lane road images
     It creates the source and destination ponts from x_off_low and x_off_high
